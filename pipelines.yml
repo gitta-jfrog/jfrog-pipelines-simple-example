@@ -3,11 +3,6 @@ pipelines:
     steps:
       - name: build_app
         type: Bash
-        configuration:
-          environmentVariables:
-          inputResources:
-            - name: be_gitRepo
-              trigger: false
           integrations:
             - name: myArtifactory
         execution:
