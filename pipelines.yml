@@ -3,6 +3,7 @@ pipelines:
     steps:
       - name: build_app
         type: Bash
+        configuration:
           integrations:
             - name: myArtifactory
         execution:
