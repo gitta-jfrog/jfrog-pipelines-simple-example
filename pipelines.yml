@@ -9,6 +9,7 @@ pipelines:
         execution:
           onStart:
             - rm -rf $run_dir/workspace/jfrog
+            - curl -fL https://getcli.jfrog.io | sh
             - jfrog -v
             - retry_command jfrog rt config --url $int_art_url --user $int_art_user --apikey $int_art_apikey --interactive=false
             - jfrog rt dl generic-repo/ generic-repo/
