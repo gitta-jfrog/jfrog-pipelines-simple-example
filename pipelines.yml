@@ -9,8 +9,8 @@ pipelines:
         execution:
           onStart:
             - rm -rf $run_dir/workspace/jfrog
-            - rm -f /usr/bin/jfrog
             - which jfrog
+            - rm -f /usr/bin/jfrog
             - curl -fL https://getcli.jfrog.io | sh
             - mv jfrog /usr/bin/
             - jfrog -v
