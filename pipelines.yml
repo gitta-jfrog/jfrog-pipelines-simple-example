@@ -14,7 +14,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: art
+            - name: myArtifactory
         execution:
           onStart:
             - rm -rf $run_dir/workspace/jfrog
