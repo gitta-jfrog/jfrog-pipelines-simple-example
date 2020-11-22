@@ -20,6 +20,6 @@ pipelines:
             - rm -rf $run_dir/workspace/jfrog
             - which jfrog
             - jfrog -v
-            - retry_command jfrog rt config --url $int_art_url --user $int_art_user --apikey $int_art_apikey --interactive=false
+            - retry_command jfrog rt config --url $int_myArtifactory_url --user $int_myArtifactory_user --apikey $int_myArtifactory_apikey --interactive=false
             - jfrog rt dl generic-repo/ generic-repo/
             - cat generic-repo/readme.txt
