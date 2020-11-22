@@ -7,7 +7,7 @@ pipelines:
           custom:
             name: "pipelines-u18node"
             tag: "221120"
-            registry: art
+            registry: myArtifactory
             sourceRepository: docker-local
     steps:
       - name: download_repo
