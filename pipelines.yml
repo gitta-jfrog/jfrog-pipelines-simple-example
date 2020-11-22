@@ -5,8 +5,8 @@ pipelines:
         type: image
         image:
           custom:
-            name: pipelines-u18node
-            tag: 221120
+            name: "pipelines-u18node"
+            tag: "221120"
             registry: art
             sourceRepository: docker-local
     steps:
