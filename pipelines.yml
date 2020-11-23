@@ -3,15 +3,9 @@ resources:
   - name: be_gitRepo
     type: GitRepo
     configuration:
-      path: sdemo/java-backend
-      gitProvider: sdemo_github
+      path: gitta-jfrog/project-examples
+      gitProvider: github
  
-  # Git repo for front-end source
-  - name: fe_gitRepo
-    type: GitRepo
-    configuration:
-      path: sdemo/vue-frontend
-      gitProvider: sdemo_github
  
   # Build info for the application
   - name: appl_build_info
@@ -54,44 +48,6 @@ pipelines:
           onStart:
             - javac -version
             - mvn --version
- 
-      - name: bld_frontend
-        type: NpmBuild
-        configuration:
-          npmArgs: --no-progress --no-audit
-          sourceLocation: .
-          repositoryName: npm-dev-virtual
-          inputResources:
-            - name: fe_gitRepo
-          integrations:
-            - name: myArtifactory
- 
-      - name: pack_frontend
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: bld_frontend
-          integrations:
-            - name: myArtifactory
-        execution:
-          onStart:
-            - export tempStateLocation="$step_tmp_dir/npmSourceState"
-            - restore_run_files npmBuildInputGitRepo $tempStateLocation
-            - pushd $tempStateLocation
-            - npm run build
-            - add_run_files $tempStateLocation/. npmBuildInputGitRepo
- 
-      - name: publish_frontend
-        type: NpmPublish
-        configuration:
-          repositoryName: npm-libs-local
-          inputSteps:
-            - name: pack_frontend
-          integrations:
-            - name: myArtifactory
-        execution:
-          onStart:
-            - export inputNpmBuildStepName="bld_frontend"
  
       - name: build_app
         type: Bash
