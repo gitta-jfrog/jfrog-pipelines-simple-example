@@ -1,14 +1,5 @@
 pipelines:
   - name: demo_download_repo
-    configuration:
-      runtime:
-        type: image
-        image:
-          custom:
-            name: "gittalabs.jfrog.io/docker/pipelines-u18node"
-            tag: "221120"
-            registry: myArtifactory
-            sourceRepository: docker
     steps:
       - name: download_repo
         type: Bash
